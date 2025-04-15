@@ -1,38 +1,10 @@
-# Working Group Template
-
-This repository contains a template for creating working groups under the
-GraphQL Foundation. To use this template you should:
-
-- create a new repository from it
-- remove this front-matter
-- customize the text in this README
-- fill out `(NAME)` in [notes/README.md](notes/README.md)
-- fill out `wg.config.js` with details about the WG's schedule
-  - `name` / `repoUrl` - update with the name and URL of your WG
-  - `videoConferenceDetails`: ask @Benjie to generate a new series of (recorded) Zoom meetings, then update the URL and password (do NOT change the spacing, it will break the markdown)
-  - `liveNotesUrl`: create a blank Google document with the same title as the
-    WG, make it publicly editable, copy instructions from the main GraphQL WG
-    live notes
-  - `nth`, `weekday`, `time` - when will your WG be? (e.g. 4th Thursday at 10:30am-12am would be `nth: 4, weekday: "Th", time: "10:30-12:00"`)
-- generate your first month's agenda `yarn && yarn gen-agenda YYYY MM` (replacing YYYY MM with the meeting's year and month, e.g. `2025 01`)
-- let @Benjie know the first meeting is scheduled and ask for the GraphQL Foundation calendar to be updated
-- (optional) ask @Benjie or a TSC member to enable agenda auto-merge:
-  - set up branch protections on `main`, specifically requiring `EasyCLA` to pass (may require a PR to be raised to trigger EasyCLA the first time?)
-  - uncomment the block at the top of `.github/workflows/wgutils-automerge.yml`
-
-In this README, items that need replacing are ALLCAPS and surrounded by
-parenthesis. We've attempted to make as much of the text as possible generic so
-that little customization will be needed.
-
----
-
-# GraphQL (NAME) Working Group
+# GraphQL OpenTelemetry Working Group
 
 This working group is a subcommittee of the
 [GraphQL Working Group](https://github.com/graphql/graphql-wg) with the
 following primary purpose:
 
-> (MISSION STATEMENT)
+> Define the best practices and semantic conventions for using OpenTelemetry with GraphQL.
 
 Anyone in the public GraphQL community may attend a meeting of this
 subcommittee, provided they first sign the
@@ -46,7 +18,7 @@ upcoming event's agenda to _attend_ or _propose an agenda item_.
 All meetings occur via video conference, however participating company offices
 are welcome to host guests.
 
-Meetings are typically scheduled (DETAILS OF MEETING SCHEDULE). Check the
+This is a short-running WG and meetings are typically scheduled ad-hoc. Check the
 [agendas](./agendas) for the exact date and time of upcoming meetings.
 
 Keep track of future upcoming meetings by subscribing to the
