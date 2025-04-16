@@ -23,6 +23,7 @@
 | Name             | GitHub        | Organization       | Location              |
 | :--------------- | :------------ | :----------------- | :-------------------- |
 | Benjie Gillam    | @benjie       | Graphile           | Chandler's Ford, UK   |
+| Trask Stalnaker  | @trask        | Microsoft          | Portland, OR, US      |
 
 
 ## Agenda
