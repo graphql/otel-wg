@@ -20,10 +20,11 @@
 ## Attendees
 
 <!-- prettier-ignore -->
-| Name             | GitHub        | Organization       | Location              |
-| :--------------- | :------------ | :----------------- | :-------------------- |
-| Benjie Gillam    | @benjie       | Graphile           | Chandler's Ford, UK   |
-| Trask Stalnaker  | @trask        | Microsoft          | Portland, OR, US      |
+| Name                | GitHub        | Organization       | Location              |
+| :------------------ | :------------ | :----------------- | :-------------------- |
+| Pascal Senn (Host)  | @pascalsenn   | ChilliCream        | Zurich, CH            |
+| Benjie Gillam       | @benjie       | Graphile           | Chandler's Ford, UK   |
+| Trask Stalnaker     | @trask        | Microsoft          | Portland, OR, US      |
 
 
 ## Agenda
@@ -38,3 +39,8 @@
 1. Determine volunteers for note taking (1m, Host)
 1. Review agenda (2m, Host)
 1. Check for [ready for review agenda items](https://github.com/graphql/otel-wg/issues?q=is%3Aissue+is%3Aopen+label%3A%22Ready+for+review+%F0%9F%99%8C%22+sort%3Aupdated-desc) (5m, Host)
+1. Introduction and current state of OpenTelemetry in GraphQL (5m, Pascal)
+1. Identify and collect core use cases we want to support (15m, All)
+   - Focus on what we want to discover or enable through OTEL data
+1. Roadmap planning and goals (10m, Pascal)
+1. Initial draft discussion (5m, Pascal)
