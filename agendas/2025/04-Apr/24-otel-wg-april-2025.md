@@ -25,7 +25,7 @@
 | Pascal Senn (Host)  | @pascalsenn   | ChilliCream        | Zurich, CH            |
 | Benjie Gillam       | @benjie       | Graphile           | Chandler's Ford, UK   |
 | Trask Stalnaker     | @trask        | Microsoft          | Portland, OR, US      |
-
+| Michael Staib       | @michaelstaib | ChilliCream        | Zurich, CH            |
 
 ## Agenda
 
@@ -35,12 +35,12 @@
    - [Contribution Guide](https://github.com/graphql/graphql-spec/blob/main/CONTRIBUTING.md)
    - [Code of Conduct](https://github.com/graphql/foundation/blob/master/CODE-OF-CONDUCT.md)
    - Meetings are [published to YouTube](https://www.youtube.com/@GraphQLFoundation/videos) and we may use LLM/AI summary tools
-1. Introduction of attendees (5m, Host)
+1. Introduction of attendees their motivation & goals (10m, Host)
 1. Determine volunteers for note taking (1m, Host)
 1. Review agenda (2m, Host)
 1. Check for [ready for review agenda items](https://github.com/graphql/otel-wg/issues?q=is%3Aissue+is%3Aopen+label%3A%22Ready+for+review+%F0%9F%99%8C%22+sort%3Aupdated-desc) (5m, Host)
 1. Introduction and current state of OpenTelemetry in GraphQL (5m, Pascal)
-1. Identify and collect core use cases we want to support (15m, All)
+1. Identify and collect core use cases we want to support (10m, Pascal)
    - Focus on what we want to discover or enable through OTEL data
-1. Roadmap planning and goals (10m, Pascal)
+1. Roadmap planning and goals (5m, Pascal)
 1. Initial draft discussion (5m, Pascal)
