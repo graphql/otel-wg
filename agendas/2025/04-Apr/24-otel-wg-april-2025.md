@@ -26,6 +26,7 @@
 | Benjie Gillam       | @benjie       | Graphile           | Chandler's Ford, UK   |
 | Trask Stalnaker     | @trask        | Microsoft          | Portland, OR, US      |
 | Michael Staib       | @michaelstaib | ChilliCream        | Zurich, CH            |
+| Valentin Cocaud     | @EmrysMyrddin | The Guild          | Nantes, FR            |
 
 ## Agenda
 
