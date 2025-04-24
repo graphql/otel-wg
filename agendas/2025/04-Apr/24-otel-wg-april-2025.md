@@ -28,6 +28,7 @@
 | Michael Staib       | @michaelstaib | ChilliCream        | Zurich, CH            |
 | Valentin Cocaud     | @EmrysMyrddin | The Guild          | Nantes, FR            |
 | Bryn Cooke          | @BrynCooke    | Apollo             | Norfolk, UK           |
+| Caroline Rodewig    | @carodewig    | Apollo             | Traverse City, MI, US |
 
 ## Agenda
 
