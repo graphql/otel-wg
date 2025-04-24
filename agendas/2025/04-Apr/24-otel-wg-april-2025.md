@@ -27,6 +27,7 @@
 | Trask Stalnaker     | @trask        | Microsoft          | Portland, OR, US      |
 | Michael Staib       | @michaelstaib | ChilliCream        | Zurich, CH            |
 | Valentin Cocaud     | @EmrysMyrddin | The Guild          | Nantes, FR            |
+| Bryn Cooke          | @BrynCooke    | Apollo             | Norfolk, UK           |
 
 ## Agenda
 
