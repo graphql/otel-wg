@@ -20,8 +20,9 @@
 ## Attendees
 
 <!-- prettier-ignore -->
-| Name             | GitHub        | Organization       | Location              |
-| :--------------- | :------------ | :----------------- | :-------------------- |
+| Name               | GitHub        | Organization       | Location              |
+| :----------------- | :------------ | :----------------- | :-------------------- |
+| Pascal Senn (Host) | @pascalsenn   | ChilliCream        | Zurich, CH            |
 
 
 ## Agenda
@@ -36,3 +37,5 @@
 1. Determine volunteers for note taking (1m, Host)
 1. Review agenda (2m, Host)
 1. Check for [ready for review agenda items](https://github.com/graphql/otel-wg/issues?q=is%3Aissue+is%3Aopen+label%3A%22Ready+for+review+%F0%9F%99%8C%22+sort%3Aupdated-desc) (5m, Host)
+1. Define how we communicate asynchronsoly (5m, Host)
+1. Discuss which Resource and Trace Attributes/Tags are relevant (15m, Host)
