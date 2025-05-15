@@ -23,6 +23,7 @@
 | Name               | GitHub        | Organization       | Location              |
 | :----------------- | :------------ | :----------------- | :-------------------- |
 | Pascal Senn (Host) | @pascalsenn   | ChilliCream        | Zurich, CH            |
+| Trask Stalnaker    | @trask        | Microsoft          | Portland, OR, US      |
 
 
 ## Agenda
