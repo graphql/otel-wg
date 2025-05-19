@@ -25,6 +25,7 @@
 | Pascal Senn (Host) | @pascalsenn   | ChilliCream        | Zurich, CH            |
 | Trask Stalnaker    | @trask        | Microsoft          | Portland, OR, US      |
 | Eli Oshinsky       | @eli0shin     | PayPal             | Baltimore, MD, US     |
+| Bryn Cooke         | @BrynCooke    | Apollo             | Norfolk, UK           |
 
 
 ## Agenda
