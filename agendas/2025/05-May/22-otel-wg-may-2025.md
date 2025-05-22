@@ -26,6 +26,7 @@
 | Trask Stalnaker    | @trask        | Microsoft          | Portland, OR, US      |
 | Eli Oshinsky       | @eli0shin     | PayPal             | Baltimore, MD, US     |
 | Bryn Cooke         | @BrynCooke    | Apollo             | Norfolk, UK           |
+| Benjie Gillam      | @benjie       | Graphile           | Chandler's Ford, UK   |
 
 
 ## Agenda
