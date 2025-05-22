@@ -22,6 +22,7 @@
 <!-- prettier-ignore -->
 | Name             | GitHub        | Organization       | Location              |
 | :--------------- | :------------ | :----------------- | :-------------------- |
+| Bryn Cooke       | @BrynCooke    | Apollo             | Norfolk, UK           |
 
 
 ## Agenda
