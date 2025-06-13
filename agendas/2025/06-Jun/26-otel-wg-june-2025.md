@@ -24,6 +24,7 @@
 | :--------------- | :------------ | :----------------- | :-------------------- |
 | Bryn Cooke       | @BrynCooke    | Apollo             | Norfolk, UK           |
 | Valentin Cocaud  | @EmrysMyrddin | The Guild          | Nantes, FR            |
+| Rob Van Gennip   | @ravangen     | Shopify            | Toronto, CA           |
 
 
 ## Agenda
