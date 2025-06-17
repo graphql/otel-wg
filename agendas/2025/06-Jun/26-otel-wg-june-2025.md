@@ -25,7 +25,7 @@
 | Bryn Cooke       | @BrynCooke    | Apollo             | Norfolk, UK           |
 | Valentin Cocaud  | @EmrysMyrddin | The Guild          | Nantes, FR            |
 | Rob Van Gennip   | @ravangen     | Shopify            | Toronto, CA           |
-
+| Eli Oshinsky     | @eli0shin     | PayPal             | Baltimore, MD         |
 
 ## Agenda
 
