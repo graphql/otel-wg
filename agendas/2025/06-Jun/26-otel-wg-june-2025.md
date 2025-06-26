@@ -40,4 +40,4 @@
 1. Determine volunteers for note taking (1m, Host)
 1. Review agenda (2m, Host)
 1. Check for [ready for review agenda items](https://github.com/graphql/otel-wg/issues?q=is%3Aissue+is%3Aopen+label%3A%22Ready+for+review+%F0%9F%99%8C%22+sort%3Aupdated-desc) (5m, Host)
-1. Continue discussion on Tracing (Attributes & Spans) (15m, Pascal)
+1. Continue discussion on Tracing [(Attributes & Spans)](https://docs.google.com/spreadsheets/d/1vmBAil0hy3Os2ufRzyyiB4UXYVK6uIXK3r8jBptSsa0/edit?gid=0#gid=0) (15m, Pascal)
