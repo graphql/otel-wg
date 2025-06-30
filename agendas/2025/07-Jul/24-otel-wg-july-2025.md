@@ -22,7 +22,7 @@
 <!-- prettier-ignore -->
 | Name             | GitHub        | Organization       | Location              |
 | :--------------- | :------------ | :----------------- | :-------------------- |
-
+| Valentin Cocaud  | @EmrysMyrddin | The Guild          | Nantes, FR            |
 
 ## Agenda
 
