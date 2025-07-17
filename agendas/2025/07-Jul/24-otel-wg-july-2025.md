@@ -23,6 +23,7 @@
 | Name             | GitHub        | Organization       | Location              |
 | :--------------- | :------------ | :----------------- | :-------------------- |
 | Valentin Cocaud  | @EmrysMyrddin | The Guild          | Nantes, FR            |
+| Eli Oshinsky     | @eli0shin     | PayPal             | Baltimore, MD         |
 
 ## Agenda
 
