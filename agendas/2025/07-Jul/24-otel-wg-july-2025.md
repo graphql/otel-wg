@@ -24,6 +24,7 @@
 | :--------------- | :------------ | :----------------- | :-------------------- |
 | Valentin Cocaud  | @EmrysMyrddin | The Guild          | Nantes, FR            |
 | Eli Oshinsky     | @eli0shin     | PayPal             | Baltimore, MD         |
+| Marco Costa      | @marcotc      | Datadog            | Victoria, BC, CA      |
 
 ## Agenda
 
