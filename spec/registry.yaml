@@ -64,7 +64,6 @@ groups:
         examples: ["/persons/0/address", "person[0].address"]
         note: >
           The path represents the location of the field being resolved within the result structure.
-          Path format may vary between implementations but SHOULD be consistent within an implementation.
       - id: graphql.selection.field.name
         brief: "The name of the field that is being resolved."
         type: string
