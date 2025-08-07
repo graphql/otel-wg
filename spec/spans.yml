@@ -128,18 +128,18 @@ groups:
       - ref: graphql.operation.hash
         requirement_level: recommended
 
-  - id: span.graphql.server.resolver.execution
+  - id: span.graphql.server.field.execution
     type: span
     stability: development
     span_kind: internal
     brief: >
-      This span represents the execution of a GraphQL field resolver.
+      This span represents the execution of a GraphQL field.
     note: |
       **Span name** SHOULD be `{graphql.selection.field.coordinate}`.
 
-      This span covers the execution of an individual field resolver,
-      including both synchronous and asynchronous resolvers.
-      The span ends when the resolver result is available.
+      This span covers the execution of an individual field, including both
+      synchronous and asynchronous resolvers. The span ends when the resolver
+      result is available.
 
       > **Warning**
       > Creating spans for every resolver execution can result in traces with
