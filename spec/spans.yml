@@ -151,3 +151,27 @@ groups:
         requirement_level: required
       - ref: graphql.selection.field.coordinate
         requirement_level: required
+
+  - id: span.graphql.server.dataloader.batch
+    type: span
+    stability: development
+    span_kind: internal
+    brief: >
+      This span represents the execution of a DataLoader batch operation.
+    note: |
+      **Span name** SHOULD be `GraphQL DataLoader Batch {dataloader.name}` when
+      the DataLoader has a name, otherwise `GraphQL DataLoader Batch`.
+
+      This span covers the batched execution of multiple individual DataLoader
+      requests. It represents the time from when the batch is scheduled to
+      when all results are available. This span is created when a DataLoader
+      batches multiple individual load requests into a single batch operation
+      to optimize data access patterns.
+
+      The span SHOULD be a child of the span that initiated the batch loading,
+      which is typically a resolver execution span.
+    attributes:
+      - ref: graphql.dataloader.name
+        requirement_level: recommended
+      - ref: graphql.dataloader.batch.size
+        requirement_level: required
