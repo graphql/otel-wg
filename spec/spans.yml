@@ -50,7 +50,7 @@ groups:
       **Span name** SHOULD be `GraphQL Document Parsing`.
 
       This span covers the parsing phase of GraphQL request processing,
-      where the document string is parsed into an abstract syntax tree.
+      where the document string is parsed into an abstract syntax tree (AST).
     attributes:
       - ref: graphql.operation.type
         requirement_level: required
@@ -140,6 +140,27 @@ groups:
       This span covers the execution of an individual field resolver,
       including both synchronous and asynchronous resolvers.
       The span ends when the resolver result is available.
+
+      > **Warning**
+      > Creating spans for every resolver execution can result in traces with
+      > hundreds or thousands of spans, severely impacting performance and
+      > trace readability. Instrumentations MUST NOT create resolver execution
+      > spans by default for all resolvers.
+
+      Instrumentations SHOULD provide configuration options to control which
+      resolvers generate spans. Recommended strategies include:
+
+      - **Manual selection**: Allow developers to explicitly mark specific
+        resolvers for tracing (e.g., via annotations, decorators, or configuration)
+      - **Asynchronous resolvers only**: Only trace resolvers that return
+        promises or other asynchronous constructs
+      - **Depth-based filtering**: Only trace resolvers at the top N levels
+        of the query (e.g., top 2 levels)
+      - **Performance-based filtering**: Only trace resolvers that exceed
+        a certain execution time threshold
+
+      The selection criteria SHOULD be documented clearly for users to
+      understand which resolvers will generate spans.
     attributes:
       - ref: graphql.selection.name
         requirement_level: recommended
