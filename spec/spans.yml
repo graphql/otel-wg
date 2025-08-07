@@ -1,0 +1,153 @@
+groups:
+  - id: span.graphql.server.operation
+    type: span
+    stability: development
+    span_kind: server
+    brief: >
+      This span represents an incoming GraphQL operation on a server implementation.
+    note: |
+      **Span name** SHOULD be of the format `{graphql.operation.type}` provided
+      `graphql.operation.type` is available. If `graphql.operation.type` is not available,
+      the span SHOULD be named `GraphQL Operation`.
+
+      For persisted operations with a specified operation name, instrumentations MAY provide
+      a configuration option to enable a more descriptive span name following
+      `{graphql.operation.type} {graphql.operation.name}` format when
+      `graphql.operation.name` is available and the operation is successfully identified
+      in the document.
+
+      > **Warning**
+      > The `graphql.operation.name` value is provided by the client and can have high
+      > cardinality. Using it in the GraphQL server span name is NOT RECOMMENDED for
+      > ad-hoc operations without careful consideration of cardinality implications.
+      > For persisted operations, the cardinality is bounded and using the operation
+      > name in the span name is more acceptable.
+      >
+      > Implementations MUST NOT include the operation name in the span name when
+      > the operation was not found or could not be identified in the document.
+      > This prevents potential security issues and ensures span names remain meaningful.
+    attributes:
+      - ref: graphql.operation.type
+        requirement_level: required
+      - ref: graphql.operation.name
+        requirement_level:
+          conditionally_required: If available and not empty.
+      - ref: graphql.operation.hash
+        requirement_level: recommended
+      - ref: graphql.operation.id
+        requirement_level:
+          conditionally_required: If using persisted operations.
+      - ref: user_agent.original
+        requirement_level: recommended
+
+  - id: span.graphql.server.document.parsing
+    type: span
+    stability: development
+    span_kind: internal
+    brief: >
+      This span represents the time spent parsing a GraphQL document.
+    note: |
+      **Span name** SHOULD be `GraphQL Document Parsing`.
+
+      This span covers the parsing phase of GraphQL request processing,
+      where the document string is parsed into an abstract syntax tree (AST).
+    attributes:
+      - ref: graphql.operation.type
+        requirement_level: required
+      - ref: graphql.operation.name
+        requirement_level:
+          conditionally_required: If available and not empty.
+      - ref: graphql.operation.hash
+        requirement_level: recommended
+      - ref: graphql.operation.id
+        requirement_level:
+          conditionally_required: If using persisted operations.
+
+  - id: span.graphql.server.document.validation
+    type: span
+    stability: development
+    span_kind: internal
+    brief: >
+      This span represents the time spent validating a GraphQL document.
+    note: |
+      **Span name** SHOULD be `GraphQL Document Validation`.
+
+      This span covers the validation phase of GraphQL request processing,
+      where the document AST is validated against the GraphQL schema.
+    attributes:
+      - ref: graphql.operation.type
+        requirement_level: required
+      - ref: graphql.operation.name
+        requirement_level:
+          conditionally_required: If available and not empty.
+      - ref: graphql.operation.hash
+        requirement_level: recommended
+      - ref: graphql.operation.id
+        requirement_level:
+          conditionally_required: If using persisted operations.
+
+  - id: span.graphql.server.document.variable_coercion
+    type: span
+    stability: development
+    span_kind: internal
+    brief: >
+      This span represents the time spent coercing variables for a GraphQL request.
+    note: |
+      **Span name** SHOULD be `GraphQL Variable Coercion`.
+
+      This span covers the variable coercion phase of GraphQL request processing,
+      where input variables are coerced and validated according to their types.
+    attributes:
+      - ref: graphql.operation.type
+        requirement_level: required
+      - ref: graphql.operation.name
+        requirement_level:
+          conditionally_required: If available and not empty.
+      - ref: graphql.operation.hash
+        requirement_level: recommended
+      - ref: graphql.operation.id
+        requirement_level:
+          conditionally_required: If using persisted operations.
+
+  - id: span.graphql.server.operation.execution
+    type: span
+    stability: development
+    span_kind: internal
+    brief: >
+      This span represents the execution phase of a GraphQL operation.
+    note: |
+      **Span name** SHOULD be `GraphQL Operation Execution`.
+
+      This span covers the whole execution part of a GraphQL request,
+      including field resolution and result formatting.
+    attributes:
+      - ref: graphql.operation.type
+        requirement_level: required
+      - ref: graphql.operation.name
+        requirement_level: recommended
+      - ref: graphql.operation.hash
+        requirement_level: recommended
+
+  - id: span.graphql.server.resolver.execution
+    type: span
+    stability: development
+    span_kind: internal
+    brief: >
+      This span represents the execution of a GraphQL field resolver.
+    note: |
+      **Span name** SHOULD be `{graphql.selection.field.coordinate}`.
+
+      This span covers the execution of an individual field resolver,
+      including both synchronous and asynchronous resolvers.
+      The span ends when the resolver result is available.
+    attributes:
+      - ref: graphql.selection.name
+        requirement_level: recommended
+      - ref: graphql.selection.path
+        requirement_level: recommended
+      - ref: graphql.selection.field.name
+        requirement_level: required
+      - ref: graphql.selection.field.parent_type
+        requirement_level: required
+      - ref: graphql.selection.field.coordinate
+        requirement_level: required
