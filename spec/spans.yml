@@ -50,7 +50,7 @@ groups:
       **Span name** SHOULD be `GraphQL Document Parsing`.
 
       This span covers the parsing phase of GraphQL request processing,
-      where the document string is parsed into an abstract syntax tree (AST).
+      where the document string is parsed into an abstract syntax tree.
     attributes:
       - ref: graphql.operation.type
         requirement_level: required
