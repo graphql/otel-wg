@@ -86,3 +86,8 @@ groups:
         note: >
           The coordinate follows the format "{ParentType}.{fieldName}" and uniquely
           identifies the field within the GraphQL schema.
+      - id: graphql.operation.step.id
+        brieg: "The id of the step in the execution plan."
+        type: int
+        stability: development
+        examples: [0, 1, 2]

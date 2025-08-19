@@ -135,6 +135,40 @@ groups:
       - ref: graphql.operation.hash
         requirement_level: recommended
 
+  - id: span.graphql.server.operation.step
+    type: span
+    stability: development
+    span_kind: internal
+    brief: >
+      This span represents the execution of an individual step within a GraphQL operation execution plan.
+    note: |
+      **Span name** SHOULD be `GraphQL Step Execution`.
+
+      This span covers the execution of a single step in the GraphQL execution plan,
+      where each step typically represents the resolution of one or more fields
+      that can be executed together. In federated GraphQL systems, a step often
+      corresponds to a query sent to a specific subgraph or data source.
+
+      Each step execution may involve field resolution, data fetching from external
+      services, data transformation, and result aggregation. Multiple step execution
+      spans may run concurrently or sequentially depending on the execution strategy
+      and field dependencies.
+
+      The step execution phase is where the actual data retrieval and field resolution
+      occurs, making it critical for performance monitoring and debugging.
+    attributes:
+      - ref: graphql.operation.type
+        requirement_level: recommended
+      - ref: graphql.operation.name
+        requirement_level: recommended
+      - ref: graphql.operation.hash
+        requirement_level: recommended
+      - id: graphql.operation.step.id
+        type: int
+        stability: development
+        brief: The sequential index of this step within the execution plan.
+        examples: [0, 1, 2]
+
   - id: span.graphql.server.operation.execution
     type: span
     stability: development
