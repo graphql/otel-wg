@@ -163,11 +163,8 @@ groups:
         requirement_level: recommended
       - ref: graphql.operation.hash
         requirement_level: recommended
-      - id: graphql.operation.step.id
-        type: int
-        stability: development
-        brief: The sequential index of this step within the execution plan.
-        examples: [0, 1, 2]
+      - ref: graphql.operation.step.id
+        requirement_level: required
 
   - id: span.graphql.server.operation.execution
     type: span
