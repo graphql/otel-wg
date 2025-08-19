@@ -135,7 +135,7 @@ groups:
       - ref: graphql.operation.hash
         requirement_level: recommended
 
-  - id: span.graphql.server.operation.step
+  - id: span.graphql.server.operation.step.execution
     type: span
     stability: development
     span_kind: internal
