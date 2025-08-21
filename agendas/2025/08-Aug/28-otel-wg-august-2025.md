@@ -22,7 +22,7 @@
 <!-- prettier-ignore -->
 | Name             | GitHub        | Organization       | Location              |
 | :--------------- | :------------ | :----------------- | :-------------------- |
-
+| Eli Oshinsky     | @eli0shin     | PayPal             | Baltimore, MD         |
 
 ## Agenda
 
