@@ -23,6 +23,7 @@
 | Name             | GitHub        | Organization       | Location              |
 | :--------------- | :------------ | :----------------- | :-------------------- |
 | Eli Oshinsky     | @eli0shin     | PayPal             | Baltimore, MD         |
+| Brian Clozel     | @bclozel      | Spring at VMware   | Lyon, FR              |
 
 ## Agenda
 
