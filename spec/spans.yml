@@ -147,7 +147,7 @@ groups:
       This span covers the execution of a single step in the GraphQL execution plan,
       where each step typically represents the resolution of one or more fields
       that can be executed together. In federated GraphQL systems, a step often
-      corresponds to a query sent to a specific subgraph or data source.
+      corresponds to a query sent to a specific data source.
 
       Each step execution may involve field resolution, data fetching from external
       services, data transformation, and result aggregation. Multiple step execution
