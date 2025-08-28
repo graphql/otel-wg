@@ -26,6 +26,7 @@
 | Eli Oshinsky      | @eli0shin     | PayPal             | Baltimore, MD         |
 | Brian Clozel      | @bclozel      | Spring at VMware   | Lyon, FR              |
 | Marco Costa       | @marcotc      | Datadog            | Victoria, BC          |
+| Rob Van Gennip    | @ravangen     | Shopify            | Toronto, ON, CA       |
 
 ## Agenda
 
