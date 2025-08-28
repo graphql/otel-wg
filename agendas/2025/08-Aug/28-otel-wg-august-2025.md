@@ -25,6 +25,7 @@
 | Pascal Senn (host)| @pascalsenn   | ChilliCream        | Zurich, CH            |
 | Eli Oshinsky      | @eli0shin     | PayPal             | Baltimore, MD         |
 | Brian Clozel      | @bclozel      | Spring at VMware   | Lyon, FR              |
+| Marco Costa       | @marcotc      | Datadog            | Victoria, BC          |
 
 ## Agenda
 
