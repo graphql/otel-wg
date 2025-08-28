@@ -10,7 +10,7 @@ groups:
         stability: development
         examples: ["FindBookById", "GetUserProfile"]
         note: >
-          This represents the operation name as specified in the GraphQL query document.
+          This represents the operation name as specified in the GraphQL operation document.
           When the operation name is not provided, this attribute SHOULD be omitted.
       - id: graphql.operation.type
         brief: "The type of the operation being executed."
