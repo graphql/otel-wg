@@ -121,7 +121,7 @@ groups:
       This span covers the operation planning phase of GraphQL request processing,
       where the server analyzes the validated query and creates an execution plan.
       This phase is common in federated GraphQL systems where queries need to be
-      planned across multiple subgraphs, and in advanced GraphQL servers that
+      planned across multiple sources, and in advanced GraphQL servers that
       perform query optimization and planning.
 
       Planning typically involves determining execution order, identifying required
