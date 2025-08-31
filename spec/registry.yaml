@@ -86,3 +86,21 @@ groups:
         note: >
           The coordinate follows the format "{ParentType}.{fieldName}" and uniquely
           identifies the field within the GraphQL schema.
+      - id: graphql.dataloader.name
+        brief: "The name of the DataLoader instance."
+        type: string
+        stability: development
+        examples: ["UserLoader", "ProductByIdLoader", "CommentsByPostIdLoader"]
+        note: >
+          This represents the name or identifier of the DataLoader instance.
+          When the DataLoader implementation supports naming, this SHOULD be set.
+          This helps in identifying specific DataLoader instances in observability.
+      - id: graphql.dataloader.batch.size
+        brief: "The number of individual requests in the DataLoader batch."
+        type: int
+        stability: development
+        examples: [5, 12, 25]
+        note: >
+          This represents the total number of individual load requests that were
+          batched together in a single batch operation. This includes both cache
+          hits and cache misses.
