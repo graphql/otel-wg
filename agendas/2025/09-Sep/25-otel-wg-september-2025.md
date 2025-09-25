@@ -24,6 +24,7 @@
 | :---------------  | :------------ | :----------------- | :-------------------- |
 | Pascal Senn (host)| pascalsenn    | ChilliCream        | Zurich, CH            |
 | Valentin Cocaud   | EmrysMyrddin  | The Guild          | France                |
+| Rob Van Gennip    | @ravangen     | Shopify            | Toronto, ON, CA       |
 
 
 ## Agenda
