@@ -24,6 +24,7 @@
 | :----------------- | :------------ | :----------------- | :-------------------- |
 | Pascal Senn (Host) | @pascalsenn   | ChilliCream        | Zurich, CH            |
 | Eli Oshinsky       | @eli0shin     | PayPal             | Baltimore, MD         |
+| Marco Costa        | @marcotc      | Datadog            | Victoria, BC, CA      |
 
 ## Agenda
 
