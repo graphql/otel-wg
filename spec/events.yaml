@@ -1,0 +1,26 @@
+groups:
+  - id: event.graphql.error
+    name: graphql.error
+    stability: development
+    type: event
+    brief: >
+      This event describes a GraphQL error that occurred during operation execution.
+    note: >
+      GraphQL errors can occur during various phases of request processing including
+      parsing, validation, and execution. Errors should be recorded on the root
+      span for simplicity and scalability. Multiple errors can be recorded as
+      separate events on the same span.
+
+      Errors and exceptions can coexist for the same issue - errors being visible
+      to users and exceptions representing unhandled issues with stack traces.
+    attributes:
+      - ref: graphql.error.message
+        requirement_level: required
+      - ref: graphql.error.locations
+        requirement_level:
+          conditionally_required: Should be included when the error can be associated with a specific location in the GraphQL document.
+      - ref: graphql.error.path
+        requirement_level:
+          conditionally_required: Must be included when the error can be associated with a particular field in the GraphQL result.
+      - ref: graphql.error.extensions.code
+        requirement_level: opt_in

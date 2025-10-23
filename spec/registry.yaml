@@ -86,3 +86,85 @@ groups:
         note: >
           The coordinate follows the format "{ParentType}.{fieldName}" and uniquely
           identifies the field within the GraphQL schema.
+
+  - id: registry.graphql.error
+    type: attribute_group
+    display_name: GraphQL Error Attributes
+    brief: >
+      This document defines the shared attributes used to
+      report GraphQL errors associated with a span or event.
+    attributes:
+      - id: graphql.error.message
+        type: string
+        stability: development
+        brief: >
+          The error message intended for the developer as a guide to understand and correct the
+          error.
+        examples:
+          [
+            "Cannot query field 'nonExistentField' on type 'User'",
+            "Variable '$id' of required type 'ID!' was not provided.",
+          ]
+        note: >
+          Every error must contain an entry with the key message with a string description of the
+          error intended for the developer as a guide to understand and correct the error.
+
+      - id: graphql.error.locations
+        type: map[]
+        stability: development
+        brief: >
+          The locations in the GraphQL document associated with the error.
+        examples: ['[{"line":3,"column":7}]']
+        note: >
+          If an error can be associated to a particular point in the requested GraphQL document, it
+          should contain an entry with the key locations with a list of locations, where each
+          location is a map with the keys line and column, both positive numbers starting from 1
+          which describe the beginning of an associated syntax element.
+
+          This should be serialized as a JSON string array.
+        fields:
+          - id: line
+            type: int
+            stability: development
+            brief: >
+              The line number of the location in the GraphQL document.
+            examples: [3]
+            requirement_level: required
+          - id: column
+            type: int
+            stability: development
+            brief: >
+              The column number of the location in the GraphQL document.
+            examples: [7]
+            requirement_level: required
+
+      - id: graphql.error.path
+        type: string[]
+        stability: development
+        brief: >
+          The path of the response field which experienced the error.
+        examples:
+          ['["user", 1, "nonExistentField"]', '["query", "findBookById"]']
+        note: >
+          If an error can be associated to a particular field in the GraphQL result, it must contain
+          an entry with the key path that details the path of the response field which experienced
+          the error. 
+
+          This allows clients to identify whether a null result is intentional or caused by a
+          runtime error.
+
+          This field should be a list of path segments starting at the root of the response and
+          ending with the field associated with the error. Path segments that represent fields
+          should be strings, and path segments that represent list indices should be 0-indexed
+          integers. If the error happens in an aliased field, the path to the error should use the
+          aliased name, since it represents a path in the response, not in the request.
+
+      - id: graphql.error.extensions.code
+        type: string
+        stability: development
+        brief: >
+          An optional error code from the extensions field.
+        examples: ["GRAPHQL_VALIDATION_FAILED", "UNAUTHENTICATED", "HC00116"]
+        note: >
+          This is an optional field that can be used to categorize errors. The error extension code 
+          is a recommended way to categorize errors for easier filtering and monitoring.
