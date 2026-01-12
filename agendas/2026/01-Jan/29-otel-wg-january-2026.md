@@ -3,7 +3,7 @@
 
 # OTel WG — January 2026
 
-- **Date & Time**: [January 22, 2026, 10:00 – 11:00 AM PST](https://www.timeanddate.com/worldclock/converter.html?iso=20260122T180000&p1=224&p2=179&p3=136&p4=268&p5=367&p6=438&p7=248&p8=240)
+- **Date & Time**: [January 29, 2026, 10:00 – 11:00 AM PST](https://www.timeanddate.com/worldclock/converter.html?iso=20260129T180000&p1=224&p2=179&p3=136&p4=268&p5=367&p6=438&p7=248&p8=240)
   - View the [calendar][], or subscribe ([Google Calendar][], [ical file][]).
   - _Please Note:_ The date or time may change. Please check this agenda the
     week of the meeting to confirm. While we try to keep all calendars accurate,
@@ -20,9 +20,9 @@
 ## Attendees
 
 <!-- prettier-ignore -->
-| Name             | GitHub        | Organization       | Location              |
-| :--------------- | :------------ | :----------------- | :-------------------- |
-| Valentin Cocaud  | EmrsyMyrddin  | The Guild          | Nantes, FR             |
+| Name               | GitHub        | Organization       | Location              |
+| :----------------- | :------------ | :----------------- | :-------------------- |
+| Pascal Senn (Host) | @pascalsenn   | ChilliCream        | Zurich, CH            |
 
 
 ## Agenda
@@ -38,3 +38,4 @@
 1. Review agenda (2m, Host)
 1. Check for [ready for review agenda items](https://github.com/graphql/otel-wg/issues?q=is%3Aissue+is%3Aopen+label%3A%22Ready+for+review+%F0%9F%99%8C%22+sort%3Aupdated-desc) (5m, Host)
 1. Reminder: [grants available for key initiatives](https://graphql.org/community/foundation/community-grant/) (1m, Host)
+1. Discuss road to v1.0 (30m, Host)
