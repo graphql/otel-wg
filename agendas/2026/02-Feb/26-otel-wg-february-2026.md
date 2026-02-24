@@ -22,7 +22,8 @@
 <!-- prettier-ignore -->
 | Name             | GitHub        | Organization       | Location              |
 | :--------------- | :------------ | :----------------- | :-------------------- |
-| Pascal Senn (Host) | @pascalsenn   | ChilliCream        | Zurich, CH            |
+| Pascal Senn (Host) | @pascalsenn   | ChilliCream        | Zurich, CH          |
+| Raymie Stata | @rstata | Airbnb | San Francisco, CA |
 
 
 ## Agenda
