@@ -114,16 +114,21 @@ groups:
           error intended for the developer as a guide to understand and correct the error.
 
       - id: graphql.error.locations
-        type: string[]
+        type: any
         stability: development
         brief: >
           The locations in the GraphQL document associated with the error.
-        examples: [["3:7", "5:4"]]
+        examples:
+          - [{"line": 3, "column": 7}, {"line": 5, "column": 4}]
         note: >
           If an error can be associated to a particular point in the requested GraphQL document, it
-          should contain a list of locations. Each location is represented as a string in the format
-          `{line}:{column}`, where both line and column are positive numbers starting from 1
-          which describe the beginning of an associated syntax element.
+          should contain an array of location objects. Each location is a JSON object with the keys
+          `line` and `column`, both positive integers starting from 1, which describe the beginning
+          of an associated syntax element.
+
+          The value MUST be an array of objects, where each object has the following properties:
+          - `line` (integer, required): The line number in the GraphQL document.
+          - `column` (integer, required): The column number in the GraphQL document.
 
       - id: graphql.error.path
         type: string
