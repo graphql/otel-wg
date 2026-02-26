@@ -64,6 +64,8 @@ groups:
         examples: ["person[0].address"]
         note: >
           The path represents the location of the field being resolved within the result structure.
+          Therefore, if a field is aliased, the path will use the alias name instead of the actual field name.
+          
       - id: graphql.selection.field.name
         brief: "The name of the field that is being resolved."
         type: string
@@ -168,3 +170,47 @@ groups:
         note: >
           This is an optional field that can be used to categorize errors. The error extension code 
           is a recommended way to categorize errors for easier filtering and monitoring.
+      - id: graphql.dataloader.name
+        brief: "The name of the DataLoader instance."
+        type: string
+        stability: development
+        examples: ["UserLoader", "ProductByIdLoader", "CommentsByPostIdLoader"]
+        note: >
+          This represents the name or identifier of the DataLoader instance.
+          When the DataLoader implementation supports naming, this SHOULD be set.
+          This helps in identifying specific DataLoader instances in observability.
+      - id: graphql.dataloader.batch.size
+        brief: "The number of individual requests in the DataLoader batch."
+        type: int
+        stability: development
+        examples: [5, 12, 25]
+        note: >
+          This represents the total number of individual load requests that were
+          batched together in a single batch operation. This includes both cache
+          hits and cache misses.
+      - id: graphql.dataloader.batch.keys
+        brief: "A subset of the keys requested in the DataLoader batch."
+        type: string[]
+        stability: development
+        examples: [["user:1", "user:2", "user:3"], ["post:42", "post:99"]]
+        note: >
+          This attribute is opt-in and SHOULD NOT be enabled by default, as keys
+          may contain sensitive or high-cardinality data. When enabled, implementations
+          MAY truncate the list to a configurable maximum number of keys.
+          The string representation of each key depends on the DataLoader implementation.
+      - id: graphql.dataloader.cache.hit_count
+        brief: "The number of requests in the batch that were served from the DataLoader cache."
+        type: int
+        stability: development
+        examples: [0, 3, 10]
+        note: >
+          This represents the number of individual load requests that were
+          resolved from the DataLoader's cache without requiring a fetch.
+      - id: graphql.dataloader.cache.miss_count
+        brief: "The number of requests in the batch that required fetching."
+        type: int
+        stability: development
+        examples: [2, 5, 12]
+        note: >
+          This represents the number of individual load requests that were
+          not found in the DataLoader's cache and required a fetch operation.

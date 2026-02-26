@@ -10,9 +10,9 @@ groups:
       `graphql.operation.type` is available. If `graphql.operation.type` is not available,
       the span SHOULD be named `GraphQL Operation`.
 
-      For persisted operations with a specified operation name, instrumentations MAY provide
+      For operation domains with bounded cardinality (e.g. trusted documents), instrumentations MAY provide
       a configuration option to enable a more descriptive span name following
-      `{graphql.operation.type} {graphql.operation.name}` format when
+      the `{graphql.operation.type} {graphql.operation.name}` format when
       `graphql.operation.name` is available and the operation is successfully identified
       in the document.
 
@@ -20,7 +20,7 @@ groups:
       > The `graphql.operation.name` value is provided by the client and can have high
       > cardinality. Using it in the GraphQL server span name is NOT RECOMMENDED for
       > ad-hoc operations without careful consideration of cardinality implications.
-      > For persisted operations, the cardinality is bounded and using the operation
+      > For trusted documents, the cardinality is bounded and using the operation
       > name in the span name is more acceptable.
       >
       > Implementations MUST NOT include the operation name in the span name when
@@ -175,3 +175,60 @@ groups:
         requirement_level: required
       - ref: graphql.selection.field.coordinate
         requirement_level: required
+
+  - id: span.graphql.server.dataloader.dispatch
+    type: span
+    stability: development
+    span_kind: internal
+    brief: >
+      This optional span groups all DataLoader batch operations for a given request.
+    note: |
+      **Span name** SHOULD be `GraphQL DataLoader Dispatch`.
+
+      This span is OPTIONAL. When present, it acts as a grouping span for all
+      DataLoader batch spans within a single GraphQL request. It represents
+      the overall dispatch of DataLoader batch operations.
+
+      The span SHOULD be a child of the `graphql.server.request` span.
+
+      Instrumentations that do not produce this span SHOULD attach DataLoader
+      batch spans directly to the `graphql.server.request` span or to the
+      resolver execution span that triggered the batch dispatch.
+    attributes: []
+
+  - id: span.graphql.server.dataloader.batch
+    type: span
+    stability: development
+    span_kind: internal
+    brief: >
+      This span represents the execution of a DataLoader batch operation.
+    note: |
+      **Span name** SHOULD be `GraphQL DataLoader Batch {dataloader.name}` when
+      the DataLoader has a name, otherwise `GraphQL DataLoader Batch`.
+
+      This span covers the batched execution of multiple individual DataLoader
+      requests. It represents the time from when the batch is scheduled to
+      when all results are available. This span is created when a DataLoader
+      batches multiple individual load requests into a single batch operation
+      to optimize data access patterns.
+
+      The parent of this span depends on what the instrumentation supports:
+      - If the `graphql.server.dataloader.dispatch` span is present,
+        this span SHOULD be a child of it.
+      - Otherwise, this span SHOULD be a child of the `graphql.server.request`
+        span, or of the resolver execution span that triggered the batch dispatch.
+
+      The span SHOULD have links to all resolver execution spans that
+      contributed load requests to this batch, so that the causal
+      relationship between resolvers and the batch is preserved.
+    attributes:
+      - ref: graphql.dataloader.name
+        requirement_level: recommended
+      - ref: graphql.dataloader.batch.size
+        requirement_level: required
+      - ref: graphql.dataloader.batch.keys
+        requirement_level: opt_in
+      - ref: graphql.dataloader.cache.hit_count
+        requirement_level: opt_in
+      - ref: graphql.dataloader.cache.miss_count
+        requirement_level: opt_in
