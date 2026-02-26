@@ -1,0 +1,90 @@
+groups:
+  - id: registry.graphql
+    type: attribute_group
+    display_name: GraphQL Attributes
+    brief: "This document defines attributes for GraphQL operations and resolvers."
+    attributes:
+      - id: graphql.operation.name
+        brief: "The name of the operation being executed."
+        type: string
+        stability: development
+        examples: ["FindBookById", "GetUserProfile"]
+        note: >
+          This represents the operation name as specified in the GraphQL operation document.
+          When the operation name is not provided, this attribute SHOULD be omitted.
+      - id: graphql.operation.type
+        brief: "The type of the operation being executed."
+        stability: development
+        type:
+          members:
+            - id: query
+              value: "query"
+              brief: "GraphQL query operation"
+              stability: development
+            - id: mutation
+              value: "mutation"
+              brief: "GraphQL mutation operation"
+              stability: development
+            - id: subscription
+              value: "subscription"
+              brief: "GraphQL subscription operation"
+              stability: development
+        examples: ["query", "mutation", "subscription"]
+      - id: graphql.document.hash
+        brief: "The hash of the operation document."
+        type: string
+        stability: development
+        examples:
+          [
+            "sha256:400483f38c08e8a3d3b972409c9dfb8e4a326e1b1940864932acd9f873d8664c",
+          ]
+        note: >
+          The hash algorithm used SHOULD be specified as part of the value (e.g., "sha256:...").
+          This can be used for monitoring operation distribution and caching strategies.
+      - id: graphql.document.id
+        brief: >
+          The document identifier for persisted operations.
+        type: string
+        stability: development
+        examples: ["aa3e37c1bf54708e93f12c137afba004"]
+        note: >
+          This is a hash or identifier of the document provided by the user to identify
+          persisted operations. This attribute SHOULD only be set when using persisted operations.
+      - id: graphql.selection.name
+        brief: "The name of the selection that is being resolved. Either the field name or an alias."
+        type: string
+        stability: development
+        examples: ["newAddress", "bookTitle"]
+        note: >
+          If the field has an alias, this SHOULD be the alias name. Otherwise, it SHOULD be the field name.
+      - id: graphql.selection.path
+        brief: "The path of the selection that is being resolved."
+        type: string
+        stability: development
+        examples: ["person[0].address"]
+        note: >
+          The path represents the location of the field being resolved within the result structure.
+          Therefore, if a field is aliased, the path will use the alias name instead of the actual field name.
+          
+      - id: graphql.selection.field.name
+        brief: "The name of the field that is being resolved."
+        type: string
+        stability: development
+        examples: ["address", "name", "id"]
+        note: >
+          This is always the actual field name as defined in the schema, not an alias.
+      - id: graphql.selection.field.parent_type
+        brief: "The type that declares the field that is being resolved."
+        type: string
+        stability: development
+        examples: ["Person", "Query", "Mutation"]
+        note: >
+          This is the GraphQL type name that contains the field definition.
+      - id: graphql.selection.field.coordinate
+        brief: "The coordinate of the field that is being resolved."
+        type: string
+        stability: development
+        examples: ["Person.address", "Query.findBookById"]
+        note: >
+          The coordinate follows the format "{ParentType}.{fieldName}" and uniquely
+          identifies the field within the GraphQL schema.
