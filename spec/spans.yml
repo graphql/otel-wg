@@ -1,5 +1,5 @@
 groups:
-  - id: span.graphql.server.request
+  - id: span.graphql.server
     type: span
     stability: development
     span_kind: server
@@ -39,7 +39,7 @@ groups:
         requirement_level:
           conditionally_required: If using persisted operations.
 
-  - id: span.graphql.server.document.parsing
+  - id: span.graphql.document.parsing.internal
     type: span
     stability: development
     span_kind: internal
@@ -63,7 +63,7 @@ groups:
         requirement_level:
           conditionally_required: If using persisted operations.
 
-  - id: span.graphql.server.document.validation
+  - id: span.graphql.document.validation.internal
     type: span
     stability: development
     span_kind: internal
@@ -86,7 +86,7 @@ groups:
         requirement_level:
           conditionally_required: If using persisted operations.
 
-  - id: span.graphql.server.document.variable_coercion
+  - id: span.graphql.document.variable_coercion.internal
     type: span
     stability: development
     span_kind: internal
@@ -109,7 +109,7 @@ groups:
         requirement_level:
           conditionally_required: If using persisted operations.
 
-  - id: span.graphql.server.operation.planning
+  - id: span.graphql.operation.planning.internal
     type: span
     stability: development
     span_kind: internal
@@ -132,10 +132,10 @@ groups:
         requirement_level: required
       - ref: graphql.operation.name
         requirement_level: recommended
-      - ref: graphql.operation.hash
+      - ref: graphql.document.hash
         requirement_level: recommended
 
-  - id: span.graphql.execute.step
+  - id: span.graphql.step.execution.internal
     type: span
     stability: development
     span_kind: internal
@@ -153,19 +153,19 @@ groups:
       spans may run concurrently or sequentially depending on the execution strategy
       and field dependencies.
 
-      The `graphql.execute.step` span SHOULD be a descendant of the
-      `graphql.server.operation.execution` span.
+      The `graphql.step.execution` span SHOULD be a descendant of the
+      `graphql.operation.execution` span.
 
       Some GraphQL implementations (e.g., plan-based engines like Grafast,
       or distributed systems like federation and stitching) replace the classic
       resolver-based execution with a plan-based approach where the operation
-      is broken into steps. In this model, the `graphql.server.operation.execution`
-      span still represents the overall execution phase, while `graphql.execute.step`
+      is broken into steps. In this model, the `graphql.operation.execution`
+      span still represents the overall execution phase, while `graphql.step.execution`
       spans represent individual units of work within that execution - such as
       data fetching, transformations, or requests to source systems.
 
-      The `graphql.server.operation.planning` span, when present, MAY also be
-      a descendant of `graphql.server.operation.execution`, depending on whether
+      The `graphql.operation.planning` span, when present, MAY also be
+      a descendant of `graphql.operation.execution`, depending on whether
       the implementation treats planning as part of the execution phase or as a
       separate preceding phase.
     attributes:
@@ -173,7 +173,7 @@ groups:
         requirement_level: recommended
       - ref: graphql.operation.name
         requirement_level: recommended
-      - ref: graphql.operation.hash
+      - ref: graphql.document.hash
         requirement_level: recommended
       - ref: graphql.operation.step.id
         requirement_level: required
@@ -192,7 +192,7 @@ groups:
       - ref: graphql.source.operation.hash
         requirement_level: opt_in
 
-  - id: span.graphql.server.operation.execution
+  - id: span.graphql.operation.execution.internal
     type: span
     stability: development
     span_kind: internal
@@ -214,7 +214,7 @@ groups:
         requirement_level:
           conditionally_required: If using persisted operations.
 
-  - id: span.graphql.server.field.execution
+  - id: span.graphql.field.execution.internal
     type: span
     stability: development
     span_kind: internal
@@ -259,7 +259,7 @@ groups:
       - ref: graphql.selection.field.coordinate
         requirement_level: required
 
-  - id: span.graphql.server.dataloader.dispatch
+  - id: span.graphql.dataloader.dispatch.internal
     type: span
     stability: development
     span_kind: internal
@@ -272,21 +272,21 @@ groups:
       DataLoader batch spans within a single GraphQL request. It represents
       the overall dispatch of DataLoader batch operations.
 
-      The span SHOULD be a child of the `graphql.server.request` span.
+      The span SHOULD be a child of the `graphql.server` span.
 
       Instrumentations that do not produce this span SHOULD attach DataLoader
-      batch spans directly to the `graphql.server.request` span or to the
+      batch spans directly to the `graphql.server` span or to the
       resolver execution span that triggered the batch dispatch.
     attributes: []
 
-  - id: span.graphql.server.dataloader.batch
+  - id: span.graphql.dataloader.batch.internal
     type: span
     stability: development
     span_kind: internal
     brief: >
       This span represents the execution of a DataLoader batch operation.
     note: |
-      **Span name** SHOULD be `GraphQL DataLoader Batch {dataloader.name}` when
+      **Span name** SHOULD be `GraphQL DataLoader Batch {graphql.dataloader.name}` when
       the DataLoader has a name, otherwise `GraphQL DataLoader Batch`.
 
       This span covers the batched execution of multiple individual DataLoader
@@ -296,9 +296,9 @@ groups:
       to optimize data access patterns.
 
       The parent of this span depends on what the instrumentation supports:
-      - If the `graphql.server.dataloader.dispatch` span is present,
+      - If the `graphql.dataloader.dispatch` span is present,
         this span SHOULD be a child of it.
-      - Otherwise, this span SHOULD be a child of the `graphql.server.request`
+      - Otherwise, this span SHOULD be a child of the `graphql.server`
         span, or of the resolver execution span that triggered the batch dispatch.
 
       The span SHOULD have links to all resolver execution spans that
