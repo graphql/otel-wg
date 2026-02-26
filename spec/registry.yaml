@@ -64,6 +64,8 @@ groups:
         examples: ["person[0].address"]
         note: >
           The path represents the location of the field being resolved within the result structure.
+          Therefore, if a field is aliased, the path will use the alias name instead of the actual field name.
+          
       - id: graphql.selection.field.name
         brief: "The name of the field that is being resolved."
         type: string

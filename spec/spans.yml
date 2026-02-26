@@ -10,9 +10,9 @@ groups:
       `graphql.operation.type` is available. If `graphql.operation.type` is not available,
       the span SHOULD be named `GraphQL Operation`.
 
-      For persisted operations with a specified operation name, instrumentations MAY provide
+      For operation domains with bounded cardinality (e.g. trusted documents), instrumentations MAY provide
       a configuration option to enable a more descriptive span name following
-      `{graphql.operation.type} {graphql.operation.name}` format when
+      the `{graphql.operation.type} {graphql.operation.name}` format when
       `graphql.operation.name` is available and the operation is successfully identified
       in the document.
 
@@ -20,7 +20,7 @@ groups:
       > The `graphql.operation.name` value is provided by the client and can have high
       > cardinality. Using it in the GraphQL server span name is NOT RECOMMENDED for
       > ad-hoc operations without careful consideration of cardinality implications.
-      > For persisted operations, the cardinality is bounded and using the operation
+      > For trusted documents, the cardinality is bounded and using the operation
       > name in the span name is more acceptable.
       >
       > Implementations MUST NOT include the operation name in the span name when
