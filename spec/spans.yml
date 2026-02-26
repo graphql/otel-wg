@@ -135,7 +135,7 @@ groups:
       - ref: graphql.operation.hash
         requirement_level: recommended
 
-  - id: span.graphql.server.operation.step.execution
+  - id: span.graphql.execute.step
     type: span
     stability: development
     span_kind: internal
@@ -146,16 +146,28 @@ groups:
 
       This span covers the execution of a single step in the GraphQL execution plan,
       where each step typically represents the resolution of one or more fields
-      that can be executed together. In federated GraphQL systems, a step often
-      corresponds to a query sent to a specific data source.
+      that can be executed together.
 
       Each step execution may involve field resolution, data fetching from external
       services, data transformation, and result aggregation. Multiple step execution
       spans may run concurrently or sequentially depending on the execution strategy
       and field dependencies.
 
-      The step execution phase is where the actual data retrieval and field resolution
-      occurs, making it critical for performance monitoring and debugging.
+      The `graphql.execute.step` span SHOULD be a descendant of the
+      `graphql.server.operation.execution` span.
+
+      Some GraphQL implementations (e.g., plan-based engines like Grafast,
+      or distributed systems like federation and stitching) replace the classic
+      resolver-based execution with a plan-based approach where the operation
+      is broken into steps. In this model, the `graphql.server.operation.execution`
+      span still represents the overall execution phase, while `graphql.execute.step`
+      spans represent individual units of work within that execution - such as
+      data fetching, transformations, or requests to source systems.
+
+      The `graphql.server.operation.planning` span, when present, MAY also be
+      a descendant of `graphql.server.operation.execution`, depending on whether
+      the implementation treats planning as part of the execution phase or as a
+      separate preceding phase.
     attributes:
       - ref: graphql.operation.type
         requirement_level: recommended
