@@ -31,6 +31,51 @@ groups:
               brief: "GraphQL subscription operation"
               stability: development
         examples: ["query", "mutation", "subscription"]
+      - id: graphql.processing.type
+        brief: "The type of processing represented by this span."
+        stability: development
+        type:
+          members:
+            - id: parse
+              value: "parse"
+              brief: "Parsing the GraphQL document into an AST."
+              stability: development
+            - id: validate
+              value: "validate"
+              brief: "Validating the GraphQL document against the schema."
+              stability: development
+            - id: variable_coercion
+              value: "variable_coercion"
+              brief: "Coercing and validating input variables."
+              stability: development
+            - id: plan
+              value: "plan"
+              brief: "Planning the execution of a GraphQL operation."
+              stability: development
+            - id: execute
+              value: "execute"
+              brief: "Executing a GraphQL operation."
+              stability: development
+            - id: step_execute
+              value: "step_execute"
+              brief: "Executing an individual step within an execution plan."
+              stability: development
+            - id: resolve
+              value: "resolve"
+              brief: "Resolving an individual field."
+              stability: development
+            - id: dataloader_dispatch
+              value: "dataloader_dispatch"
+              brief: "Dispatching grouped DataLoader batch operations."
+              stability: development
+            - id: dataloader_batch
+              value: "dataloader_batch"
+              brief: "Executing a DataLoader batch operation."
+              stability: development
+        examples: ["parse", "validate", "execute", "resolve"]
+        note: >
+          This attribute allows telemetry consumers to programmatically identify
+          what kind of processing a span represents without relying on span names.
       - id: graphql.document.hash
         brief: "The hash of the operation document."
         type: string
