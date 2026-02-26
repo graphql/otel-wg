@@ -10,7 +10,7 @@ groups:
         stability: development
         examples: ["FindBookById", "GetUserProfile"]
         note: >
-          This represents the operation name as specified in the GraphQL query document.
+          This represents the operation name as specified in the GraphQL operation document.
           When the operation name is not provided, this attribute SHOULD be omitted.
       - id: graphql.operation.type
         brief: "The type of the operation being executed."
@@ -30,7 +30,7 @@ groups:
               brief: "GraphQL subscription operation"
               stability: development
         examples: ["query", "mutation", "subscription"]
-      - id: graphql.operation.hash
+      - id: graphql.document.hash
         brief: "The hash of the operation document."
         type: string
         stability: development
@@ -41,7 +41,7 @@ groups:
         note: >
           The hash algorithm used SHOULD be specified as part of the value (e.g., "sha256:...").
           This can be used for monitoring operation distribution and caching strategies.
-      - id: graphql.operation.id
+      - id: graphql.document.id
         brief: >
           The document identifier for persisted operations.
         type: string
@@ -61,9 +61,11 @@ groups:
         brief: "The path of the selection that is being resolved."
         type: string
         stability: development
-        examples: ["/persons/0/address", "person[0].address"]
+        examples: ["person[0].address"]
         note: >
           The path represents the location of the field being resolved within the result structure.
+          Therefore, if a field is aliased, the path will use the alias name instead of the actual field name.
+          
       - id: graphql.selection.field.name
         brief: "The name of the field that is being resolved."
         type: string
