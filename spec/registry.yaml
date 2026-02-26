@@ -103,6 +103,47 @@ groups:
         type: string
         stability: development
         examples: ["plan-1", "abc-123"]
+      - id: graphql.source.name
+        brief: "The name of the source system."
+        type: string
+        stability: development
+        examples: ["accounts", "products", "reviews"]
+        note: >
+          The human-readable name of the downstream source that a distributed
+          GraphQL gateway dispatches to. For example, this could be a subgraph
+          name in a federated system or a stitched schema name.
+      - id: graphql.source.id
+        brief: "The unique identifier of the source system."
+        type: string
+        stability: development
+        examples: ["src-1", "abc-123", "https://accounts.example.com/graphql"]
+        note: >
+          An identifier for the downstream source system. The format is
+          implementation-specific and can be any string.
+      - id: graphql.source.operation.name
+        brief: "The name of the GraphQL operation to be executed on the source."
+        type: string
+        stability: development
+        examples: ["GetUser", "FetchProducts", "ResolveReviews"]
+        note: >
+          The operation name of the query or mutation that the gateway sends
+          to the source system.
+      - id: graphql.source.operation.kind
+        brief: "The kind of GraphQL operation to be executed on the source."
+        type: string
+        stability: development
+        examples: ["query", "mutation", "subscription"]
+        note: >
+          The kind of operation that the gateway sends to the source system.
+      - id: graphql.source.operation.hash
+        brief: "A hash of the GraphQL operation to be executed on the source."
+        type: string
+        stability: development
+        examples: ["sha256:abc123", "md5:def456"]
+        note: >
+          A hash of the operation document that the gateway sends to the
+          source system. Useful for identifying operations without transmitting
+          the full document.
       - id: graphql.dataloader.name
         brief: "The name of the DataLoader instance."
         type: string

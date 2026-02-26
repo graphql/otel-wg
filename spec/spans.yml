@@ -169,6 +169,16 @@ groups:
         requirement_level: recommended
       - ref: graphql.operation.step.plan.id
         requirement_level: recommended
+      - ref: graphql.source.name
+        requirement_level: opt_in
+      - ref: graphql.source.id
+        requirement_level: opt_in
+      - ref: graphql.source.operation.name
+        requirement_level: opt_in
+      - ref: graphql.source.operation.kind
+        requirement_level: opt_in
+      - ref: graphql.source.operation.hash
+        requirement_level: opt_in
 
   - id: span.graphql.server.operation.execution
     type: span
