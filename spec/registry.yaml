@@ -116,7 +116,7 @@ groups:
         stability: development
         brief: >
           The locations in the GraphQL document associated with the error.
-        examples: ['[{"line":3,"column":7}]']
+        examples: [["3:7", "5:4"]]
         note: >
           If an error can be associated to a particular point in the requested GraphQL document, it
           should contain an entry with the key locations with a list of locations, where each
@@ -161,7 +161,7 @@ groups:
           integers. If the error happens in an aliased field, the path to the error should use the
           aliased name, since it represents a path in the response, not in the request.
 
-      - id: graphql.error.extensions.code
+      - id: graphql.error.code
         type: string
         stability: development
         brief: >
