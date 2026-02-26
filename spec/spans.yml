@@ -165,6 +165,10 @@ groups:
         requirement_level: recommended
       - ref: graphql.operation.step.id
         requirement_level: required
+      - ref: graphql.operation.step.kind
+        requirement_level: recommended
+      - ref: graphql.operation.step.plan.id
+        requirement_level: recommended
 
   - id: span.graphql.server.operation.execution
     type: span

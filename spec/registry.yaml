@@ -89,10 +89,20 @@ groups:
           The coordinate follows the format "{ParentType}.{fieldName}" and uniquely
           identifies the field within the GraphQL schema.
       - id: graphql.operation.step.id
-        brieg: "The id of the step in the execution plan."
-        type: int
+        brief: "The id of the step in the execution plan."
+        type: string
         stability: development
-        examples: [0, 1, 2]
+        examples: ["0", "1", "2"]
+      - id: graphql.operation.step.kind
+        brief: "The kind of step in the execution plan."
+        type: string
+        stability: development
+        examples: ["node", "operation", "fetch", "batch"]
+      - id: graphql.operation.step.plan.id
+        brief: "The id of the execution plan this step belongs to."
+        type: string
+        stability: development
+        examples: ["plan-1", "abc-123"]
       - id: graphql.dataloader.name
         brief: "The name of the DataLoader instance."
         type: string
