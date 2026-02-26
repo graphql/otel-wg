@@ -176,6 +176,26 @@ groups:
       - ref: graphql.selection.field.coordinate
         requirement_level: required
 
+  - id: span.graphql.server.dataloader.dispatch
+    type: span
+    stability: development
+    span_kind: internal
+    brief: >
+      This optional span groups all DataLoader batch operations for a given request.
+    note: |
+      **Span name** SHOULD be `GraphQL DataLoader Dispatch`.
+
+      This span is OPTIONAL. When present, it acts as a grouping span for all
+      DataLoader batch spans within a single GraphQL request. It represents
+      the overall dispatch of DataLoader batch operations.
+
+      The span SHOULD be a child of the `graphql.server.request` span.
+
+      Instrumentations that do not produce this span SHOULD attach DataLoader
+      batch spans directly to the `graphql.server.request` span or to the
+      resolver execution span that triggered the batch dispatch.
+    attributes: []
+
   - id: span.graphql.server.dataloader.batch
     type: span
     stability: development
@@ -192,10 +212,23 @@ groups:
       batches multiple individual load requests into a single batch operation
       to optimize data access patterns.
 
-      The span SHOULD be a child of the span that initiated the batch loading,
-      which is typically a resolver execution span.
+      The parent of this span depends on what the instrumentation supports:
+      - If the `graphql.server.dataloader.dispatch` span is present,
+        this span SHOULD be a child of it.
+      - Otherwise, this span SHOULD be a child of the `graphql.server.request`
+        span, or of the resolver execution span that triggered the batch dispatch.
+
+      The span SHOULD have links to all resolver execution spans that
+      contributed load requests to this batch, so that the causal
+      relationship between resolvers and the batch is preserved.
     attributes:
       - ref: graphql.dataloader.name
         requirement_level: recommended
       - ref: graphql.dataloader.batch.size
         requirement_level: required
+      - ref: graphql.dataloader.batch.keys
+        requirement_level: opt_in
+      - ref: graphql.dataloader.cache.hit_count
+        requirement_level: opt_in
+      - ref: graphql.dataloader.cache.miss_count
+        requirement_level: opt_in

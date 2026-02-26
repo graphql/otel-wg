@@ -106,3 +106,29 @@ groups:
           This represents the total number of individual load requests that were
           batched together in a single batch operation. This includes both cache
           hits and cache misses.
+      - id: graphql.dataloader.batch.keys
+        brief: "A subset of the keys requested in the DataLoader batch."
+        type: string[]
+        stability: development
+        examples: [["user:1", "user:2", "user:3"], ["post:42", "post:99"]]
+        note: >
+          This attribute is opt-in and SHOULD NOT be enabled by default, as keys
+          may contain sensitive or high-cardinality data. When enabled, implementations
+          MAY truncate the list to a configurable maximum number of keys.
+          The string representation of each key depends on the DataLoader implementation.
+      - id: graphql.dataloader.cache.hit_count
+        brief: "The number of requests in the batch that were served from the DataLoader cache."
+        type: int
+        stability: development
+        examples: [0, 3, 10]
+        note: >
+          This represents the number of individual load requests that were
+          resolved from the DataLoader's cache without requiring a fetch.
+      - id: graphql.dataloader.cache.miss_count
+        brief: "The number of requests in the batch that required fetching."
+        type: int
+        stability: development
+        examples: [2, 5, 12]
+        note: >
+          This represents the number of individual load requests that were
+          not found in the DataLoader's cache and required a fetch operation.
