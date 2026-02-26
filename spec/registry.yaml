@@ -168,8 +168,20 @@ groups:
           An optional error code from the extensions field.
         examples: ["GRAPHQL_VALIDATION_FAILED", "UNAUTHENTICATED", "HC00116"]
         note: >
-          This is an optional field that can be used to categorize errors. The error extension code 
+          This is an optional field that can be used to categorize errors. The error extension code
           is a recommended way to categorize errors for easier filtering and monitoring.
+
+      - id: graphql.error.schema_coordinate
+        type: string
+        stability: development
+        brief: >
+          The coordinate of the field in the schema which experienced the error.
+        examples: ["User.friends", "Query.me"]
+        note: >
+          If an error can be associated to a particular field in the GraphQL schema, it must
+          contain a schema coordinate in the form of `typeName.fieldName` identifying the field
+          which experienced the error.
+
       - id: graphql.operation.step.id
         brief: "The id of the step in the execution plan."
         type: string
