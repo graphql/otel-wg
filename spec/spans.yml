@@ -109,6 +109,89 @@ groups:
         requirement_level:
           conditionally_required: If using persisted operations.
 
+  - id: span.graphql.server.operation.planning
+    type: span
+    stability: development
+    span_kind: internal
+    brief: >
+      This span represents the time spent planning the execution of a GraphQL operation.
+    note: |
+      **Span name** SHOULD be `GraphQL Operation Planning`.
+
+      This span covers the operation planning phase of GraphQL request processing,
+      where the server analyzes the validated query and creates an execution plan.
+      This phase is common in federated GraphQL systems where queries need to be
+      planned across multiple sources, and in advanced GraphQL servers that
+      perform query optimization and planning.
+
+      Planning typically involves determining execution order, identifying required
+      data sources, optimizing data fetching strategies, and preparing the execution
+      context.
+    attributes:
+      - ref: graphql.operation.type
+        requirement_level: required
+      - ref: graphql.operation.name
+        requirement_level: recommended
+      - ref: graphql.operation.hash
+        requirement_level: recommended
+
+  - id: span.graphql.execute.step
+    type: span
+    stability: development
+    span_kind: internal
+    brief: >
+      This span represents the execution of an individual step within a GraphQL operation execution plan.
+    note: |
+      **Span name** SHOULD be `GraphQL Step Execution`.
+
+      This span covers the execution of a single step in the GraphQL execution plan,
+      where each step typically represents the resolution of one or more fields
+      that can be executed together.
+
+      Each step execution may involve field resolution, data fetching from external
+      services, data transformation, and result aggregation. Multiple step execution
+      spans may run concurrently or sequentially depending on the execution strategy
+      and field dependencies.
+
+      The `graphql.execute.step` span SHOULD be a descendant of the
+      `graphql.server.operation.execution` span.
+
+      Some GraphQL implementations (e.g., plan-based engines like Grafast,
+      or distributed systems like federation and stitching) replace the classic
+      resolver-based execution with a plan-based approach where the operation
+      is broken into steps. In this model, the `graphql.server.operation.execution`
+      span still represents the overall execution phase, while `graphql.execute.step`
+      spans represent individual units of work within that execution - such as
+      data fetching, transformations, or requests to source systems.
+
+      The `graphql.server.operation.planning` span, when present, MAY also be
+      a descendant of `graphql.server.operation.execution`, depending on whether
+      the implementation treats planning as part of the execution phase or as a
+      separate preceding phase.
+    attributes:
+      - ref: graphql.operation.type
+        requirement_level: recommended
+      - ref: graphql.operation.name
+        requirement_level: recommended
+      - ref: graphql.operation.hash
+        requirement_level: recommended
+      - ref: graphql.operation.step.id
+        requirement_level: required
+      - ref: graphql.operation.step.kind
+        requirement_level: recommended
+      - ref: graphql.operation.step.plan.id
+        requirement_level: recommended
+      - ref: graphql.source.name
+        requirement_level: opt_in
+      - ref: graphql.source.id
+        requirement_level: opt_in
+      - ref: graphql.source.operation.name
+        requirement_level: opt_in
+      - ref: graphql.source.operation.kind
+        requirement_level: opt_in
+      - ref: graphql.source.operation.hash
+        requirement_level: opt_in
+
   - id: span.graphql.server.operation.execution
     type: span
     stability: development
