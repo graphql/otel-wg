@@ -1,6 +1,7 @@
 groups:
   - id: registry.graphql
     type: attribute_group
+    stability: development
     display_name: GraphQL Attributes
     brief: "This document defines attributes for GraphQL operations and resolvers."
     attributes:
@@ -65,7 +66,7 @@ groups:
         note: >
           The path represents the location of the field being resolved within the result structure.
           Therefore, if a field is aliased, the path will use the alias name instead of the actual field name.
-          
+
       - id: graphql.selection.field.name
         brief: "The name of the field that is being resolved."
         type: string
@@ -91,6 +92,7 @@ groups:
 
   - id: registry.graphql.error
     type: attribute_group
+    stability: development
     display_name: GraphQL Error Attributes
     brief: >
       This document defines the shared attributes used to
@@ -112,33 +114,16 @@ groups:
           error intended for the developer as a guide to understand and correct the error.
 
       - id: graphql.error.locations
-        type: map[]
+        type: string[]
         stability: development
         brief: >
           The locations in the GraphQL document associated with the error.
         examples: [["3:7", "5:4"]]
         note: >
           If an error can be associated to a particular point in the requested GraphQL document, it
-          should contain an entry with the key locations with a list of locations, where each
-          location is a map with the keys line and column, both positive numbers starting from 1
+          should contain a list of locations. Each location is represented as a string in the format
+          `{line}:{column}`, where both line and column are positive numbers starting from 1
           which describe the beginning of an associated syntax element.
-
-          This should be serialized as a JSON string array.
-        fields:
-          - id: line
-            type: int
-            stability: development
-            brief: >
-              The line number of the location in the GraphQL document.
-            examples: [3]
-            requirement_level: required
-          - id: column
-            type: int
-            stability: development
-            brief: >
-              The column number of the location in the GraphQL document.
-            examples: [7]
-            requirement_level: required
 
       - id: graphql.error.path
         type: string
@@ -181,6 +166,14 @@ groups:
           contain a schema coordinate in the form of `typeName.fieldName` identifying the field
           which experienced the error.
 
+  - id: registry.graphql.operation
+    type: attribute_group
+    stability: development
+    display_name: GraphQL Operation Attributes
+    brief: >
+      This document defines attributes for GraphQL operation execution steps
+      and planning.
+    attributes:
       - id: graphql.operation.step.id
         brief: "The id of the step in the execution plan."
         type: string
@@ -196,6 +189,15 @@ groups:
         type: string
         stability: development
         examples: ["plan-1", "abc-123"]
+
+  - id: registry.graphql.source
+    type: attribute_group
+    stability: development
+    display_name: GraphQL Source Attributes
+    brief: >
+      This document defines attributes for GraphQL source systems
+      in distributed GraphQL architectures.
+    attributes:
       - id: graphql.source.name
         brief: "The name of the source system."
         type: string
@@ -237,6 +239,14 @@ groups:
           A hash of the operation document that the gateway sends to the
           source system. Useful for identifying operations without transmitting
           the full document.
+
+  - id: registry.graphql.dataloader
+    type: attribute_group
+    stability: development
+    display_name: GraphQL DataLoader Attributes
+    brief: >
+      This document defines attributes for GraphQL DataLoader operations.
+    attributes:
       - id: graphql.dataloader.name
         brief: "The name of the DataLoader instance."
         type: string

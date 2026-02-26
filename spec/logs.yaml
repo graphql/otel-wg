@@ -1,6 +1,7 @@
 groups:
   - id: log-graphql.error
     type: attribute_group
+    stability: development
     brief: >
       This document defines attributes for GraphQL errors represented using Log
       Records.
