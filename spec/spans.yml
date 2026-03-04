@@ -198,8 +198,6 @@ groups:
         requirement_level: recommended
       - ref: graphql.source.name
         requirement_level: opt_in
-      - ref: graphql.source.id
-        requirement_level: opt_in
       - ref: graphql.source.operation.name
         requirement_level: opt_in
       - ref: graphql.source.operation.kind
