@@ -51,6 +51,9 @@ groups:
       This span covers the parsing phase of GraphQL request processing,
       where the document string is parsed into an abstract syntax tree (AST).
     attributes:
+      - ref: graphql.processing.type
+        requirement_level: required
+        brief: MUST be `parse`.
       - ref: graphql.operation.type
         requirement_level:
           conditionally_required: If parsing succeeded
@@ -75,6 +78,9 @@ groups:
       This span covers the validation phase of GraphQL request processing,
       where the document AST is validated against the GraphQL schema.
     attributes:
+      - ref: graphql.processing.type
+        requirement_level: required
+        brief: MUST be `validate`.
       - ref: graphql.operation.type
         requirement_level: required
       - ref: graphql.operation.name
@@ -98,6 +104,9 @@ groups:
       This span covers the variable coercion phase of GraphQL request processing,
       where input variables are coerced and validated according to their types.
     attributes:
+      - ref: graphql.processing.type
+        requirement_level: required
+        brief: MUST be `variable_coercion`.
       - ref: graphql.operation.type
         requirement_level: required
       - ref: graphql.operation.name
@@ -128,6 +137,9 @@ groups:
       data sources, optimizing data fetching strategies, and preparing the execution
       context.
     attributes:
+      - ref: graphql.processing.type
+        requirement_level: required
+        brief: MUST be `plan`.
       - ref: graphql.operation.type
         requirement_level: required
       - ref: graphql.operation.name
@@ -169,6 +181,9 @@ groups:
       the implementation treats planning as part of the execution phase or as a
       separate preceding phase.
     attributes:
+      - ref: graphql.processing.type
+        requirement_level: required
+        brief: MUST be `step_execute`.
       - ref: graphql.operation.type
         requirement_level: recommended
       - ref: graphql.operation.name
@@ -204,6 +219,9 @@ groups:
       This span covers the whole execution part of a GraphQL request,
       including field resolution and result formatting.
     attributes:
+      - ref: graphql.processing.type
+        requirement_level: required
+        brief: MUST be `execute`.
       - ref: graphql.operation.type
         requirement_level: required
       - ref: graphql.operation.name
@@ -248,6 +266,9 @@ groups:
       The selection criteria SHOULD be documented clearly for users to
       understand which resolvers will generate spans.
     attributes:
+      - ref: graphql.processing.type
+        requirement_level: required
+        brief: MUST be `resolve`.
       - ref: graphql.selection.name
         requirement_level: recommended
       - ref: graphql.selection.path
@@ -277,7 +298,10 @@ groups:
       Instrumentations that do not produce this span SHOULD attach DataLoader
       batch spans directly to the `graphql.server` span or to the
       resolver execution span that triggered the batch dispatch.
-    attributes: []
+    attributes:
+      - ref: graphql.processing.type
+        requirement_level: required
+        brief: MUST be `dataloader_dispatch`.
 
   - id: span.graphql.dataloader.batch.internal
     type: span
@@ -305,6 +329,9 @@ groups:
       contributed load requests to this batch, so that the causal
       relationship between resolvers and the batch is preserved.
     attributes:
+      - ref: graphql.processing.type
+        requirement_level: required
+        brief: MUST be `dataloader_batch`.
       - ref: graphql.dataloader.name
         requirement_level: recommended
       - ref: graphql.dataloader.batch.size
