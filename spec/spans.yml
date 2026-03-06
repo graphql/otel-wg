@@ -28,6 +28,7 @@ groups:
       > This prevents potential security issues and ensures span names remain meaningful.
     attributes:
       - ref: graphql.operation.type
+        sampling_relevant: true
         requirement_level:
           conditionally_required: If parsing succeeded
       - ref: graphql.operation.name
