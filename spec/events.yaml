@@ -11,6 +11,12 @@ groups:
       span for simplicity and scalability. Multiple errors can be recorded as
       separate events on the same span.
 
+      Instrumentations SHOULD set the severity based on the impact of the error.
+      When the response contains both `data` and `errors` (partial success),
+      the severity SHOULD be WARN (severity number 13). When the response
+      contains only `errors` and no `data` (complete failure), the severity
+      SHOULD be ERROR (severity number 17).
+
       Errors and exceptions can coexist for the same issue - errors being visible
       to users and exceptions representing unhandled issues with stack traces.
     attributes:
