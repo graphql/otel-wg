@@ -75,6 +75,7 @@ groups:
           cardinality. Instrumentations SHOULD document the list of errors they
           report.
       - ref: graphql.operation.type
+        sampling_relevant: true
         requirement_level:
           conditionally_required: If parsing succeeded
       - ref: graphql.operation.name
