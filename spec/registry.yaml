@@ -89,13 +89,13 @@ groups:
           This can be used for monitoring operation distribution and caching strategies.
       - id: graphql.document.id
         brief: >
-          The document identifier for persisted operations.
+          The document identifier for trusted documents.
         type: string
         stability: development
         examples: ["aa3e37c1bf54708e93f12c137afba004"]
         note: >
           This is a hash or identifier of the document provided by the user to identify
-          persisted operations. This attribute SHOULD only be set when using persisted operations.
+          trusted documents. This attribute SHOULD only be set when using trusted documents.
       - id: graphql.selection.name
         brief: "The name of the selection that is being resolved. Either the field name or an alias."
         type: string
