@@ -39,6 +39,53 @@ groups:
         requirement_level:
           conditionally_required: If using persisted operations.
 
+  - id: span.graphql.client
+    type: span
+    stability: development
+    span_kind: client
+    brief: >
+      This span represents an outgoing GraphQL request to a remote server.
+    note: |
+      **Span name** SHOULD be of the format `{graphql.operation.type}` provided
+      `graphql.operation.type` is available. If `graphql.operation.type` is not available,
+      the span SHOULD be named `GraphQL Operation`.
+
+      When `graphql.operation.name` is available, instrumentations MAY provide
+      a configuration option to enable a more descriptive span name following
+      the `{graphql.operation.type} {graphql.operation.name}` format.
+
+      **Span kind** MUST be `CLIENT`.
+
+      The GraphQL client span SHOULD be the parent of any HTTP client span
+      created for the underlying transport. This allows the GraphQL-level
+      operation to be correlated with its transport-level details.
+
+      When the GraphQL client library handles transport internally (i.e., no
+      separate HTTP client instrumentation exists), the GraphQL client span
+      may be the only span representing the outbound call.
+    attributes:
+      - ref: server.address
+        requirement_level: recommended
+        brief: >
+          The domain name or IP address of the GraphQL server being called.
+        note: >
+          This SHOULD be the logical server address, not a proxy address.
+          For federated GraphQL, this is the address of the subgraph service.
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If not the default port for the scheme (e.g., not 443 for HTTPS).
+      - ref: graphql.operation.type
+        requirement_level:
+          conditionally_required: If available.
+      - ref: graphql.operation.name
+        requirement_level:
+          conditionally_required: If available and not empty.
+      - ref: graphql.document.hash
+        requirement_level: recommended
+      - ref: graphql.document.id
+        requirement_level:
+          conditionally_required: If using trusted documents.
+
   - id: span.graphql.document.parsing.internal
     type: span
     stability: development
