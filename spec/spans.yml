@@ -26,7 +26,54 @@ groups:
       > Implementations MUST NOT include the operation name in the span name when
       > the operation was not found or could not be identified in the document.
       > This prevents potential security issues and ensures span names remain meaningful.
+
+      **Span status** guidance:
+
+      Span status MUST be left unset if the GraphQL operation completed successfully
+      with no errors.
+
+      Span status SHOULD be set to `Error` when the response contains only errors
+      and no usable data. This includes parse errors, validation errors, variable
+      coercion errors, request errors, and total execution failure (where `data` is
+      `null` and `errors` is non-empty).
+
+      When the response contains both partial `data` and `errors` (partial success),
+      the span status SHOULD be set to `Error`. While partial data was returned,
+      the presence of errors indicates the operation did not complete as requested.
+      Individual GraphQL errors SHOULD still be recorded as events or log records.
+
+      > **Note**
+      > Instrumentations that have additional context about specific errors MAY
+      > use this context to set the span status more precisely. For example, if
+      > an instrumentation knows that the errors only affect optional,
+      > non-critical fields, it MAY choose to leave the span status unset.
     attributes:
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If the GraphQL operation ended with an error.
+        examples: ['GRAPHQL_PARSE_FAILED', 'GRAPHQL_VALIDATION_FAILED', 'HC0016', 'java.lang.RuntimeException']
+        note: |
+          GraphQL errors can occur during various phases of request processing.
+
+          If the request fails before execution begins (e.g., parsing, validation, or
+          variable coercion fails), `error.type` SHOULD be set to a low-cardinality
+          error identifier. When `graphql.error.code` is available from the error's
+          extensions, it SHOULD be used as the `error.type` value.
+
+          If the request completes execution but the response contains errors,
+          `error.type` SHOULD be set to the `graphql.error.code` from the first
+          error's extensions if available, or to a low-cardinality error identifier
+          describing the class of error (e.g., the exception type).
+
+          If the request completes execution with partial data (both `data` and
+          `errors` are present), `error.type` SHOULD still be set.
+
+          If the request completes successfully with no errors, instrumentations
+          SHOULD NOT set `error.type`.
+
+          The `error.type` value SHOULD be predictable and SHOULD have low
+          cardinality. Instrumentations SHOULD document the list of errors they
+          report.
       - ref: graphql.operation.type
         requirement_level:
           conditionally_required: If parsing succeeded
@@ -97,7 +144,19 @@ groups:
 
       This span covers the parsing phase of GraphQL request processing,
       where the document string is parsed into an abstract syntax tree (AST).
+
+      **Span status** SHOULD be set to `Error` when `error.type` is present.
     attributes:
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If the processing phase ended with an error.
+        note: |
+          If the processing phase fails, `error.type` SHOULD be set to the
+          `graphql.error.code` from the error's extensions if available, or to
+          a low-cardinality error identifier such as the exception type.
+
+          If the processing phase completes successfully, instrumentations
+          SHOULD NOT set `error.type`.
       - ref: graphql.processing.type
         requirement_level: required
         brief: MUST be `parse`.
@@ -118,7 +177,19 @@ groups:
 
       This span covers the validation phase of GraphQL request processing,
       where the document AST is validated against the GraphQL schema.
+
+      **Span status** SHOULD be set to `Error` when `error.type` is present.
     attributes:
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If the processing phase ended with an error.
+        note: |
+          If the processing phase fails, `error.type` SHOULD be set to the
+          `graphql.error.code` from the error's extensions if available, or to
+          a low-cardinality error identifier such as the exception type.
+
+          If the processing phase completes successfully, instrumentations
+          SHOULD NOT set `error.type`.
       - ref: graphql.processing.type
         requirement_level: required
         brief: MUST be `validate`.
@@ -139,7 +210,19 @@ groups:
 
       This span covers the variable coercion phase of GraphQL request processing,
       where input variables are coerced and validated according to their types.
+
+      **Span status** SHOULD be set to `Error` when `error.type` is present.
     attributes:
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If the processing phase ended with an error.
+        note: |
+          If the processing phase fails, `error.type` SHOULD be set to the
+          `graphql.error.code` from the error's extensions if available, or to
+          a low-cardinality error identifier such as the exception type.
+
+          If the processing phase completes successfully, instrumentations
+          SHOULD NOT set `error.type`.
       - ref: graphql.processing.type
         requirement_level: required
         brief: MUST be `variable_coercion`.
@@ -252,7 +335,19 @@ groups:
 
       This span covers the whole execution part of a GraphQL request,
       including field resolution and result formatting.
+
+      **Span status** SHOULD be set to `Error` when `error.type` is present.
     attributes:
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If the processing phase ended with an error.
+        note: |
+          If the processing phase fails, `error.type` SHOULD be set to the
+          `graphql.error.code` from the error's extensions if available, or to
+          a low-cardinality error identifier such as the exception type.
+
+          If the processing phase completes successfully, instrumentations
+          SHOULD NOT set `error.type`.
       - ref: graphql.processing.type
         requirement_level: required
         brief: MUST be `execute`.
@@ -299,7 +394,17 @@ groups:
 
       The selection criteria SHOULD be documented clearly for users to
       understand which resolvers will generate spans.
+
+      **Span status** SHOULD be set to `Error` when the resolver throws an
+      exception or the field resolution results in a GraphQL error.
     attributes:
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If the field resolution ended with an error.
+        note: |
+          If the resolver throws an exception or results in a GraphQL field error,
+          `error.type` SHOULD be set to the exception type (its fully-qualified
+          class name, if applicable) or the `graphql.error.code` if available.
       - ref: graphql.processing.type
         requirement_level: required
         brief: MUST be `resolve`.
