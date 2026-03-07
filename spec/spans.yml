@@ -37,7 +37,7 @@ groups:
         requirement_level: recommended
       - ref: graphql.document.id
         requirement_level:
-          conditionally_required: If using persisted operations.
+          conditionally_required: If using trusted documents.
 
   - id: span.graphql.document.parsing.internal
     type: span
@@ -58,7 +58,7 @@ groups:
         requirement_level: recommended
       - ref: graphql.document.id
         requirement_level:
-          conditionally_required: If using persisted operations.
+          conditionally_required: If using trusted documents.
 
   - id: span.graphql.document.validation.internal
     type: span
@@ -79,7 +79,7 @@ groups:
         requirement_level: recommended
       - ref: graphql.document.id
         requirement_level:
-          conditionally_required: If using persisted operations.
+          conditionally_required: If using trusted documents.
 
   - id: span.graphql.document.variable_coercion.internal
     type: span
@@ -105,7 +105,7 @@ groups:
         requirement_level: recommended
       - ref: graphql.document.id
         requirement_level:
-          conditionally_required: If using persisted operations.
+          conditionally_required: If using trusted documents.
 
   - id: span.graphql.operation.planning.internal
     type: span
@@ -219,7 +219,7 @@ groups:
         requirement_level: recommended
       - ref: graphql.document.id
         requirement_level:
-          conditionally_required: If using persisted operations.
+          conditionally_required: If using trusted documents.
 
   - id: span.graphql.field.execution.internal
     type: span
