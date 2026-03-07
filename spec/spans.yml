@@ -312,9 +312,18 @@ groups:
       - Otherwise, this span SHOULD be a child of the `graphql.server`
         span, or of the resolver execution span that triggered the batch dispatch.
 
-      The span SHOULD have links to all resolver execution spans that
-      contributed load requests to this batch, so that the causal
-      relationship between resolvers and the batch is preserved.
+      The span SHOULD have links to all `graphql.field.execution` spans
+      whose resolvers contributed load requests to this batch, so that
+      the causal relationship between resolvers and the batch is preserved.
+
+      Each link SHOULD include the following attributes:
+      - `graphql.selection.field.coordinate`: The coordinate of the field
+        that triggered the load request (e.g., `User.avatar`).
+
+      When the number of contributing resolvers exceeds a practical limit,
+      instrumentations MAY cap the number of links to a configurable
+      maximum. The `graphql.dataloader.batch.size` attribute still
+      reflects the true batch size regardless of link count.
     attributes:
       - ref: graphql.processing.type
         requirement_level: required
