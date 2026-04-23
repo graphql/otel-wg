@@ -22,6 +22,7 @@
 <!-- prettier-ignore -->
 | Name             | GitHub        | Organization       | Location              |
 | :--------------- | :------------ | :----------------- | :-------------------- |
+| Pascal Senn      | @pascalsenn   | ChillICream        | Zurich                |
 
 
 ## Agenda
