@@ -22,6 +22,7 @@
 <!-- prettier-ignore -->
 | Name             | GitHub        | Organization       | Location              |
 | :--------------- | :------------ | :----------------- | :-------------------- |
+| Abdelrahman Awad | logaretm      | Sentry             | Vienna, Austria       |
 
 
 ## Agenda
