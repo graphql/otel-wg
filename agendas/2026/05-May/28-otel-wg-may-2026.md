@@ -20,9 +20,10 @@
 ## Attendees
 
 <!-- prettier-ignore -->
-| Name             | GitHub        | Organization       | Location              |
-| :--------------- | :------------ | :----------------- | :-------------------- |
-| Abdelrahman Awad | logaretm      | Sentry             | Vienna, Austria       |
+| Name              | GitHub        | Organization       | Location              |
+| :---------------- | :------------ | :----------------- | :-------------------- |
+| Pascal Senn (Host)| pascalsenn    | ChilliCream        | Zurich, CH            |
+| Abdelrahman Awad  | logaretm      | Sentry             | Vienna, Austria       |
 
 
 ## Agenda
